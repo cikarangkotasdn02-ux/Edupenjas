@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduPenjas - Portal Pembelajaran Penjasorkes</title>
+    <style>
+        :root {
+            --primary: #2e7d32;
+            --primary-dark: #1b5e20;
+            --secondary: #f57c00;
+            --light: #f4f6f8;
+            --dark: #212121;
+            --gray: #666;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--secondary);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(46, 125, 50, 0.85), rgba(27, 94, 32, 0.85)), 
+                        url('https://images.unsplash.com/photo-1517649763962-0c623266ddc0?auto=format&fit=crop&w=1200&q=80') center/cover;
+            color: white;
+            padding: 80px 5%;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #e65100;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+            color: var(--primary-dark);
+        }
+
+        /* Materi Cards */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px;
+            font-weight: bold;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-body p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        /* BMI Calculator Widget */
+        .widget-section {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            margin-top: 40px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .calculator-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .form-group input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .calc-btn {
+            grid-column: span 2;
+        }
+
+        #bmi-result {
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        /* Responsive Navbar */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .calculator-form {
+                grid-template-columns: 1fr;
+            }
+            .calc-btn {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">⚽ EduPenjas</div>
+        <nav>
+            <ul>
+                <li><a href="#materi">Materi</a></li>
+                <li><a href="#kalkulator">Kalkulator BMI</a></li>
+                <li><a href="#jadwal">Jadwal Praktik</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Media Pembelajaran Penjasorkes</h1>
+        <p>Akses materi Pendidikan Jasmani, Olahraga, dan Kesehatan secara terstruktur, interaktif, dan mudah dipahami.</p>
+        <a href="#materi" class="btn">Mulai Belajar</a>
+    </section>
+
+    <div class="container">
+        
+        <section id="materi">
+            <h2 class="section-title">Materi Pembelajaran Utama</h2>
+            <div class="grid">
+                
+                <div class="card">
+                    <div class="card-header">Permainan Bola Besar</div>
+                    <div class="card-body">
+                        <p>Pelajari teknik dasar, peraturan resmi, dan strategi permainan Sepak Bola, Bola Voli, dan Basket.</p>
+                        <button class="btn" style="width:100%" onclick="showDetail('Bola Besar')">Baca Selengkapnya</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">Atletik</div>
+                    <div class="card-body">
+                        <p>Induk dari semua cabang olahraga: pembahasan Lari Jarak Pendek, Lompat Jauh, dan Lempar Lembing.</p>
+                        <button class="btn" style="width:100%" onclick="showDetail('Atletik')">Baca Selengkapnya</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">Kebugaran Jasmani</div>
+                    <div class="card-body">
+                        <p>Konsep dasar daya tahan, kekuatan, kelincahan, dan kelentukan serta metode latihannya.</p>
+                        <button class="btn" style="width:100%" onclick="showDetail('Kebugaran Jasmani')">Baca Selengkapnya</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">Kesehatan & Gizi</div>
+                    <div class="card-body">
+                        <p>Panduan pola hidup sehat, pencegahan penyakit, dan pentingnya gizi seimbang bagi tubuh.</p>
+                        <button class="btn" style="width:100%" onclick="showDetail('Kesehatan & Gizi')">Baca Selengkapnya</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="kalkulator" class="widget-section">
+            <h2 class="section-title">Kalkulator BMI (Indeks Massa Tubuh)</h2>
+            <p style="text-align: center; color: var(--gray); margin-bottom: 20px;">Hitung status kebugaran fisik ideal Anda secara cepat.</p>
+            
+            <form class="calculator-form" onsubmit="calculateBMI(event)">
+                <div class="form-group">
+                    <label for="weight">Berat Badan (kg)</label>
+                    <input type="number" id="weight" placeholder="Contoh: 60" required step="0.1">
+                </div>
+                <div class="form-group">
+                    <label for="height">Tinggi Badan (cm)</label>
+                    <input type="number" id="height" placeholder="Contoh: 170" required step="0.1">
+                </div>
+                <button type="submit" class="btn calc-btn">Hitung BMI</button>
+            </form>
+
+            <div id="bmi-result"></div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 EduPenjas - Portal Pendidikan Jasmani, Olahraga, dan Kesehatan.</p>
+    </footer>
+
+    <script>
+        function calculateBMI(event) {
+            event.preventDefault();
+            
+            const weight = parseFloat(document.getElementById('weight').value);
+            const heightCm = parseFloat(document.getElementById('height').value);
+            
+            if (weight > 0 && heightCm > 0) {
+                const heightM = heightCm / 100;
+                const bmi = (weight / (heightM * heightM)).toFixed(1);
+                
+                let category = '';
+                let color = '';
+
+                if (bmi < 18.5) {
+                    category = 'Kekurangan Berat Badan (Kurus)';
+                    color = '#d9534f';
+                } else if (bmi >= 18.5 && bmi <= 24.9) {
+                    category = 'Berat Badan Normal (Ideal)';
+                    color = '#5cb85c';
+                } else if (bmi >= 25 && bmi <= 29.9) {
+                    category = 'Kelebihan Berat Badan (Gemuk)';
+                    color = '#f0ad4e';
+                } else {
+                    category = 'Obesitas';
+                    color = '#d9534f';
+                }
+
+                const resultDiv = document.getElementById('bmi-result');
+                resultDiv.innerHTML = `Skor BMI Anda: <strong>${bmi}</strong><br><span style="color: ${color}">${category}</span>`;
+            }
+        }
+
+        function showDetail(materi) {
+            alert('Fitur modul modul ' + materi + ' akan terbuka. Anda dapat menautkannya ke halaman detail materi.');
+        }
+    </script>
+</body>
+</html>
